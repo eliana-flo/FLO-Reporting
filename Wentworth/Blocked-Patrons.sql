@@ -2,7 +2,17 @@
 
 DROP FUNCTION IF EXISTS Blocked-Patrons
 CREATE FUNCTION Blocked-Patrons()
-  
+RETURNS TABLE(
+    user_id uuid,
+    user_last_name text,
+    user_first_name text,
+    barcode text,
+    user_email text,
+    group_name text,
+    loan_id integer, 
+    account_balance integer,
+    block_reason text
+  )
 --This report finds patrons in the Wentworth system that meet the block criteria, not necessarily patrons that currently have a block
 AS $$
 select ug.user_id, ug.user_last_name, ug.user_first_name, ug.barcode, ug.user_email, ug.group_name, count(loan_id), sum(faa.account_balance), 'Max checkouts exceeded' as block_reason from 
