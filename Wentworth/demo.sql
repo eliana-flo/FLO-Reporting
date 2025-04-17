@@ -1,8 +1,8 @@
---metadb:function Demo
+--metadb:function demo
 
-DROP FUNCTION IF EXISTS Demo;
+DROP FUNCTION IF EXISTS demo;
 
-CREATE FUNCTION Demo(
+CREATE FUNCTION demo(
     start_date date DEFAULT '2000-01-01',
     end_date date DEFAULT '2050-01-01')
 RETURNS TABLE(
