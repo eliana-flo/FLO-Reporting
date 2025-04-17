@@ -3,5 +3,11 @@
     "description": "Test",
     "instructions": "Test",
     "parameters": [
+                {
+            "name": "group_name",
+            "displayName": "Patron group name",
+            "type": "text",
+            "required": false
+        }
     ]
 }
