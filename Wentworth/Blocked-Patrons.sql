@@ -1,4 +1,10 @@
+--metadb:function Blocked-Patrons
+
+DROP FUNCTION IF EXISTS Blocked-Patrons
+CREATE FUNCTION Blocked-Patrons()
+  
 --This report finds patrons in the Wentworth system that meet the block criteria, not necessarily patrons that currently have a block
+AS $$
 select ug.user_id, ug.user_last_name, ug.user_first_name, ug.barcode, ug.user_email, ug.group_name, count(loan_id), sum(faa.account_balance), 'Max checkouts exceeded' as block_reason from 
 folio_derived.users_groups ug
 left join folio_derived.loans_items li on (li.user_id = ug.user_id) 
@@ -45,3 +51,8 @@ left join folio_derived.loans_items li on (li.user_id = ug.user_id)
 left join folio_derived.feesfines_accounts_actions faa on (faa.user_id = ug.user_id) 
 where faa.fine_status = 'Open' and faa.account_balance > 1000 and ug.group_name in ('Emeritus', 'Faculty', 'Graduate', 'Library Staff', 'Staff', 'Student') 
 group by ug.user_id, ug.user_last_name, ug.user_first_name, ug.barcode, ug.group_name, faa.account_balance, ug.user_email
+$$
+
+LANGUAGE SQL
+STABLE
+PARALLEL SAFE;
