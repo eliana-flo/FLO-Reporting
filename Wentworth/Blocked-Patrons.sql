@@ -1,7 +1,9 @@
 --metadb:function Blocked-Patrons
 
 DROP FUNCTION IF EXISTS Blocked-Patrons
-CREATE FUNCTION Blocked-Patrons()
+CREATE FUNCTION Blocked-Patrons(
+    group_name text DEFAULT 'Staff'
+)
 RETURNS TABLE
     (
     user_id uuid,
