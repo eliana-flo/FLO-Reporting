@@ -1,6 +1,7 @@
 --metadb:function Blocked-Patrons
 
 DROP FUNCTION IF EXISTS Blocked-Patrons
+    
 CREATE FUNCTION Blocked-Patrons(
     group_name text DEFAULT 'Staff'
 )
@@ -16,7 +17,6 @@ RETURNS TABLE
     fine_fee_balance integer,
     block_reason text
   )
-
 AS $$
 select ug.user_id, ug.user_last_name, ug.user_first_name, ug.barcode, ug.user_email, ug.group_name, count(loan_id) as loan_count, sum(faa.account_balance) as fine_fee_balance, 'Max checkouts exceeded' as block_reason from 
 folio_derived.users_groups ug
@@ -65,7 +65,6 @@ left join folio_derived.feesfines_accounts_actions faa on (faa.user_id = ug.user
 where faa.fine_status = 'Open' and faa.account_balance > 1000 and ug.group_name in ('Emeritus', 'Faculty', 'Graduate', 'Library Staff', 'Staff', 'Student') 
 group by ug.user_id, ug.user_last_name, ug.user_first_name, ug.barcode, ug.group_name, faa.account_balance, ug.user_email
 $$
-
 LANGUAGE SQL
 STABLE
 PARALLEL SAFE;
