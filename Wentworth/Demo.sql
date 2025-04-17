@@ -1,8 +1,8 @@
---metadb:function get_users
+--metadb:function Demo
 
-DROP FUNCTION IF EXISTS get_users;
+DROP FUNCTION IF EXISTS Demo;
 
-CREATE FUNCTION get_users(
+CREATE FUNCTION Demo(
     start_date date DEFAULT '2000-01-01',
     end_date date DEFAULT '2050-01-01')
 RETURNS TABLE(
