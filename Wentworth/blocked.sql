@@ -1,6 +1,6 @@
 --metadb:function blocked
 
-DROP FUNCTION IF EXISTS blocked
+DROP FUNCTION IF EXISTS blocked;
     
 CREATE FUNCTION blocked()   
 RETURNS TABLE
