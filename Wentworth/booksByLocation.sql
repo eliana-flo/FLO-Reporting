@@ -16,6 +16,7 @@ LEFT JOIN folio_inventory.location__t l ON (l.id = it.effective_location_id)
 LEFT JOIN folio_inventory.material_type__t m ON (m.id = it.material_type_id)
 WHERE m.name = 'Book'
 GROUP BY l.name
+ORDER BY item_count
 $$
 LANGUAGE SQL
 STABLE
