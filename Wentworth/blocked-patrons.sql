@@ -3,7 +3,6 @@
 DROP FUNCTION IF EXISTS Blocked-Patrons
     
 CREATE FUNCTION Blocked-Patrons(
-    group_name text DEFAULT 'Staff'
 )
 RETURNS TABLE
     (
