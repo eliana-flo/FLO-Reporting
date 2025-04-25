@@ -52,7 +52,7 @@ left join folio_derived.feesfines_accounts_actions faa on (faa.user_id = ug.user
 left join folio_derived.loans_items li on (li.user_id = ug.user_id) 
 where loan_status = 'Open' and li.item_status like '%lost%' and ug.group_name = 'FLO User'
 group by ug.user_id, ug.user_last_name, ug.user_first_name, ug.barcode, ug.group_name, faa.account_balance, ug.user_email
-having count(loan_id) = 1
+having count(loan_id) >= 5
 UNION
 select ug.user_id, ug.user_last_name, ug.user_first_name, ug.barcode, ug.user_email, ug.group_name, count(loan_id) as loan_count, sum(faa.account_balance) as fine_fee_balance, 'Max fine balance exceeded' as block_reason
 from folio_derived.users_groups ug
