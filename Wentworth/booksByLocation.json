@@ -1,6 +1,6 @@
 {
     "displayName": "Count of items with the material type 'Book' by location",
-    "description": "Test",
+    "description": "Count of items with the material type 'Book' by location",
     "instructions": "Test",
     "parameters": []
 }
