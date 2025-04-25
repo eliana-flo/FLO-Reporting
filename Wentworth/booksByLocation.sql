@@ -3,8 +3,9 @@
 DROP FUNCTION IF EXISTS booksByLocation;
 
 CREATE FUNCTION booksByLocation()
-RETURNS TABLE(location as text,
-item_count as integer)
+RETURNS TABLE
+  (location text,
+item_count integer)
 AS $$
 SELECT 
 l.name as location, 
