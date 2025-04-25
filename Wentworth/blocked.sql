@@ -4,8 +4,7 @@ DROP FUNCTION IF EXISTS blocked;
     
 CREATE FUNCTION blocked()   
 RETURNS TABLE
-    (
-    user_id uuid,
+    (user_id uuid,
     user_last_name text,
     user_first_name text,
     barcode text,
@@ -13,8 +12,7 @@ RETURNS TABLE
     group_name text,
     loan_count integer, 
     fine_fee_balance integer,
-    block_reason text
-  )
+    block_reason text)
 AS $$
 select ug.user_id, ug.user_last_name, ug.user_first_name, ug.barcode, ug.user_email, ug.group_name, count(loan_id) as loan_count, sum(faa.account_balance) as fine_fee_balance, 'Max checkouts exceeded' as block_reason from 
 folio_derived.users_groups ug
