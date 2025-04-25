@@ -1,9 +1,8 @@
---metadb:function blocked-patrons
+--metadb:function blocked
 
-DROP FUNCTION IF EXISTS blocked-patrons
+DROP FUNCTION IF EXISTS blocked
     
-CREATE FUNCTION blocked-patrons()
-    
+CREATE FUNCTION blocked()   
 RETURNS TABLE
     (
     user_id uuid,
